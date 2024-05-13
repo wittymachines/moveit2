@@ -642,11 +642,13 @@ bool ServoCalcs::cartesianServoCalcs(geometry_msgs::msg::TwistStamped& cmd,
     delta_theta_ = pseudo_inverse * delta_x;
   }
 
-  delta_theta_ *= velocityScalingFactorForSingularity(joint_model_group_, delta_x, svd, pseudo_inverse,
-                                                      parameters_->hard_stop_singularity_threshold,
-                                                      parameters_->lower_singularity_threshold,
-                                                      parameters_->leaving_singularity_threshold_multiplier,
-                                                      *node_->get_clock(), current_state_, status_);
+  // skip singularity check. TODO: Do we need something here? Why don't just move through the singularity?
+
+  // delta_theta_ *= velocityScalingFactorForSingularity(joint_model_group_, delta_x, svd, pseudo_inverse,
+  //                                                     parameters_->hard_stop_singularity_threshold,
+  //                                                     parameters_->lower_singularity_threshold,
+  //                                                     parameters_->leaving_singularity_threshold_multiplier,
+  //                                                     *node_->get_clock(), current_state_, status_);
 
   return internalServoUpdate(delta_theta_, joint_trajectory, ServoType::CARTESIAN_SPACE);
 }
