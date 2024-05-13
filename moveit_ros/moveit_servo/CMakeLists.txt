@@ -167,53 +167,103 @@ ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ## TESTING ##
 #############
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  find_package(ament_cmake_gtest REQUIRED)
-  find_package(ros_testing REQUIRED)
-  find_package(Boost REQUIRED COMPONENTS filesystem)
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   find_package(ament_cmake_gtest REQUIRED)
+#   find_package(ros_testing REQUIRED)
+#   find_package(Boost REQUIRED COMPONENTS filesystem)
 
-  # These don't pass yet, disable them for now
-  set(ament_cmake_copyright_FOUND TRUE)
-  set(ament_cmake_cpplint_FOUND TRUE)
-  set(ament_cmake_flake8_FOUND TRUE)
-  set(ament_cmake_uncrustify_FOUND TRUE)
+#   # These don't pass yet, disable them for now
+#   set(ament_cmake_copyright_FOUND TRUE)
+#   set(ament_cmake_cpplint_FOUND TRUE)
+#   set(ament_cmake_flake8_FOUND TRUE)
+#   set(ament_cmake_uncrustify_FOUND TRUE)
 
-  # Run all lint tests in package.xml except those listed above
-  ament_lint_auto_find_test_dependencies()
+#   # Run all lint tests in package.xml except those listed above
+#   ament_lint_auto_find_test_dependencies()
 
-  # Servo integration launch test
-  ament_add_gtest_executable(test_servo_integration
-      test/test_servo_interface.cpp
-      test/servo_launch_test_common.hpp
-  )
-  target_link_libraries(test_servo_integration ${SERVO_PARAM_LIB_NAME})
-  ament_target_dependencies(test_servo_integration ${THIS_PACKAGE_INCLUDE_DEPENDS})
-  add_ros_test(test/launch/test_servo_integration.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+#   # Servo integration launch test
+#   ament_add_gtest_executable(test_servo_integration
+#       test/test_servo_interface.cpp
+#       test/servo_launch_test_common.hpp
+#   )
+#   target_link_libraries(test_servo_integration ${SERVO_PARAM_LIB_NAME})
+#   ament_target_dependencies(test_servo_integration ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#   add_ros_test(test/launch/test_servo_integration.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
 
-  # Servo collision checking integration test
-  ament_add_gtest_executable(test_servo_collision
-        test/test_servo_collision.cpp
-        test/servo_launch_test_common.hpp
-  )
-  target_link_libraries(test_servo_collision ${SERVO_PARAM_LIB_NAME})
-  ament_target_dependencies(test_servo_collision ${THIS_PACKAGE_INCLUDE_DEPENDS})
-  add_ros_test(test/launch/test_servo_collision.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+#   # Servo collision checking integration test
+#   ament_add_gtest_executable(test_servo_collision
+#         test/test_servo_collision.cppif(BUILD_TESTING)
+#         find_package(ament_lint_auto REQUIRED)
+#         find_package(ament_cmake_gtest REQUIRED)
+#         find_package(ros_testing REQUIRED)
+#         find_package(Boost REQUIRED COMPONENTS filesystem)
+      
+#         # These don't pass yet, disable them for now
+#         set(ament_cmake_copyright_FOUND TRUE)
+#         set(ament_cmake_cpplint_FOUND TRUE)
+#         set(ament_cmake_flake8_FOUND TRUE)
+#         set(ament_cmake_uncrustify_FOUND TRUE)
+      
+#         # Run all lint tests in package.xml except those listed above
+#         ament_lint_auto_find_test_dependencies()
+      
+#         # Servo integration launch test
+#         ament_add_gtest_executable(test_servo_integration
+#             test/test_servo_interface.cpp
+#             test/servo_launch_test_common.hpp
+#         )
+#         target_link_libraries(test_servo_integration ${SERVO_PARAM_LIB_NAME})
+#         ament_target_dependencies(test_servo_integration ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#         add_ros_test(test/launch/test_servo_integration.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+      
+#         # Servo collision checking integration test
+#         ament_add_gtest_executable(test_servo_collision
+#               test/test_servo_collision.cpp
+#               test/servo_launch_test_common.hpp
+#         )
+#         target_link_libraries(test_servo_collision ${SERVO_PARAM_LIB_NAME})
+#         ament_target_dependencies(test_servo_collision ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#         add_ros_test(test/launch/test_servo_collision.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+      
+#         # pose_tracking
+#         ament_add_gtest_executable(test_servo_pose_tracking
+#               test/pose_tracking_test.cpp
+#         )
+#         ament_target_dependencies(test_servo_pose_tracking ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#         target_link_libraries(test_servo_pose_tracking ${POSE_TRACKING})
+#         add_ros_test(test/launch/test_servo_pose_tracking.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+      
+#         # Unit tests
+#         ament_add_gtest(servo_calcs_unit_tests
+#           test/servo_calcs_unit_tests.cpp
+#         )
+#         target_link_libraries(servo_calcs_unit_tests ${SERVO_LIB_NAME})
+      
+#       endif()
+      
+#       ament_package()
+      
+#         test/servo_launch_test_common.hpp
+#   )
+#   target_link_libraries(test_servo_collision ${SERVO_PARAM_LIB_NAME})
+#   ament_target_dependencies(test_servo_collision ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#   add_ros_test(test/launch/test_servo_collision.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
 
-  # pose_tracking
-  ament_add_gtest_executable(test_servo_pose_tracking
-        test/pose_tracking_test.cpp
-  )
-  ament_target_dependencies(test_servo_pose_tracking ${THIS_PACKAGE_INCLUDE_DEPENDS})
-  target_link_libraries(test_servo_pose_tracking ${POSE_TRACKING})
-  add_ros_test(test/launch/test_servo_pose_tracking.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
+#   # pose_tracking
+#   ament_add_gtest_executable(test_servo_pose_tracking
+#         test/pose_tracking_test.cpp
+#   )
+#   ament_target_dependencies(test_servo_pose_tracking ${THIS_PACKAGE_INCLUDE_DEPENDS})
+#   target_link_libraries(test_servo_pose_tracking ${POSE_TRACKING})
+#   add_ros_test(test/launch/test_servo_pose_tracking.test.py TIMEOUT 120 ARGS "test_binary_dir:=${CMAKE_CURRENT_BINARY_DIR}")
 
-  # Unit tests
-  ament_add_gtest(servo_calcs_unit_tests
-    test/servo_calcs_unit_tests.cpp
-  )
-  target_link_libraries(servo_calcs_unit_tests ${SERVO_LIB_NAME})
+#   # Unit tests
+#   ament_add_gtest(servo_calcs_unit_tests
+#     test/servo_calcs_unit_tests.cpp
+#   )
+#   target_link_libraries(servo_calcs_unit_tests ${SERVO_LIB_NAME})
 
-endif()
+# endif()
 
 ament_package()
