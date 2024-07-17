@@ -73,6 +73,8 @@ _autosummary
 # clangd
 .cache
 
+.github/
+
 # source dependencies (see moveit2.repos)
 moveit_msgs
 moveit_resources
